@@ -14,7 +14,12 @@ import { Route as AppRouteImport } from './routes/_app'
 import { Route as LoginRouteImport } from './routes/login'
 import { Route as AppAccountRouteImport } from './routes/_app/account'
 import { Route as AppAnalyticsRouteImport } from './routes/_app/analytics'
+import { Route as AppCustomersRouteImport } from './routes/_app/customers'
+import { Route as AppInventoryRouteImport } from './routes/_app/inventory'
+import { Route as AppLeadsRouteImport } from './routes/_app/leads'
+import { Route as AppOrdersRouteImport } from './routes/_app/orders'
 import { Route as AppOverviewRouteImport } from './routes/_app/overview'
+import { Route as AppProductsRouteImport } from './routes/_app/products'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -40,9 +45,34 @@ const AppAnalyticsRoute = AppAnalyticsRouteImport.update({
   path: '/analytics',
   getParentRoute: () => AppRoute,
 } as any)
+const AppCustomersRoute = AppCustomersRouteImport.update({
+  id: '/customers',
+  path: '/customers',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppInventoryRoute = AppInventoryRouteImport.update({
+  id: '/inventory',
+  path: '/inventory',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppLeadsRoute = AppLeadsRouteImport.update({
+  id: '/leads',
+  path: '/leads',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppOrdersRoute = AppOrdersRouteImport.update({
+  id: '/orders',
+  path: '/orders',
+  getParentRoute: () => AppRoute,
+} as any)
 const AppOverviewRoute = AppOverviewRouteImport.update({
   id: '/overview',
   path: '/overview',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppProductsRoute = AppProductsRouteImport.update({
+  id: '/products',
+  path: '/products',
   getParentRoute: () => AppRoute,
 } as any)
 
@@ -51,14 +81,24 @@ export interface FileRoutesByFullPath {
   '/login': typeof LoginRoute
   '/account': typeof AppAccountRoute
   '/analytics': typeof AppAnalyticsRoute
+  '/customers': typeof AppCustomersRoute
+  '/inventory': typeof AppInventoryRoute
+  '/leads': typeof AppLeadsRoute
+  '/orders': typeof AppOrdersRoute
   '/overview': typeof AppOverviewRoute
+  '/products': typeof AppProductsRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/login': typeof LoginRoute
   '/account': typeof AppAccountRoute
   '/analytics': typeof AppAnalyticsRoute
+  '/customers': typeof AppCustomersRoute
+  '/inventory': typeof AppInventoryRoute
+  '/leads': typeof AppLeadsRoute
+  '/orders': typeof AppOrdersRoute
   '/overview': typeof AppOverviewRoute
+  '/products': typeof AppProductsRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -67,13 +107,38 @@ export interface FileRoutesById {
   '/login': typeof LoginRoute
   '/_app/account': typeof AppAccountRoute
   '/_app/analytics': typeof AppAnalyticsRoute
+  '/_app/customers': typeof AppCustomersRoute
+  '/_app/inventory': typeof AppInventoryRoute
+  '/_app/leads': typeof AppLeadsRoute
+  '/_app/orders': typeof AppOrdersRoute
   '/_app/overview': typeof AppOverviewRoute
+  '/_app/products': typeof AppProductsRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/login' | '/account' | '/analytics' | '/overview'
+  fullPaths:
+    | '/'
+    | '/login'
+    | '/account'
+    | '/analytics'
+    | '/customers'
+    | '/inventory'
+    | '/leads'
+    | '/orders'
+    | '/overview'
+    | '/products'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/login' | '/account' | '/analytics' | '/overview'
+  to:
+    | '/'
+    | '/login'
+    | '/account'
+    | '/analytics'
+    | '/customers'
+    | '/inventory'
+    | '/leads'
+    | '/orders'
+    | '/overview'
+    | '/products'
   id:
     | '__root__'
     | '/'
@@ -81,7 +146,12 @@ export interface FileRouteTypes {
     | '/login'
     | '/_app/account'
     | '/_app/analytics'
+    | '/_app/customers'
+    | '/_app/inventory'
+    | '/_app/leads'
+    | '/_app/orders'
     | '/_app/overview'
+    | '/_app/products'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -127,11 +197,46 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AppAnalyticsRouteImport
       parentRoute: typeof AppRoute
     }
+    '/_app/customers': {
+      id: '/_app/customers'
+      path: '/customers'
+      fullPath: '/customers'
+      preLoaderRoute: typeof AppCustomersRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/_app/inventory': {
+      id: '/_app/inventory'
+      path: '/inventory'
+      fullPath: '/inventory'
+      preLoaderRoute: typeof AppInventoryRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/_app/leads': {
+      id: '/_app/leads'
+      path: '/leads'
+      fullPath: '/leads'
+      preLoaderRoute: typeof AppLeadsRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/_app/orders': {
+      id: '/_app/orders'
+      path: '/orders'
+      fullPath: '/orders'
+      preLoaderRoute: typeof AppOrdersRouteImport
+      parentRoute: typeof AppRoute
+    }
     '/_app/overview': {
       id: '/_app/overview'
       path: '/overview'
       fullPath: '/overview'
       preLoaderRoute: typeof AppOverviewRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/_app/products': {
+      id: '/_app/products'
+      path: '/products'
+      fullPath: '/products'
+      preLoaderRoute: typeof AppProductsRouteImport
       parentRoute: typeof AppRoute
     }
   }
@@ -140,13 +245,23 @@ declare module '@tanstack/react-router' {
 interface AppRouteChildren {
   AppAccountRoute: typeof AppAccountRoute
   AppAnalyticsRoute: typeof AppAnalyticsRoute
+  AppCustomersRoute: typeof AppCustomersRoute
+  AppInventoryRoute: typeof AppInventoryRoute
+  AppLeadsRoute: typeof AppLeadsRoute
+  AppOrdersRoute: typeof AppOrdersRoute
   AppOverviewRoute: typeof AppOverviewRoute
+  AppProductsRoute: typeof AppProductsRoute
 }
 
 const AppRouteChildren: AppRouteChildren = {
   AppAccountRoute: AppAccountRoute,
   AppAnalyticsRoute: AppAnalyticsRoute,
+  AppCustomersRoute: AppCustomersRoute,
+  AppInventoryRoute: AppInventoryRoute,
+  AppLeadsRoute: AppLeadsRoute,
+  AppOrdersRoute: AppOrdersRoute,
   AppOverviewRoute: AppOverviewRoute,
+  AppProductsRoute: AppProductsRoute,
 }
 
 const AppRouteWithChildren = AppRoute._addFileChildren(AppRouteChildren)
