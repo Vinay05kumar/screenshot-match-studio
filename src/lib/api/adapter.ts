@@ -20,6 +20,7 @@ import type {
   ProductListParams,
   ProductUpdateInput,
   SourceStat,
+  StockMovement,
   StaffUser,
   StockUpdateInput,
   StockUpdateResult,
